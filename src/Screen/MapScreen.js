@@ -8,7 +8,7 @@ import {
   PermissionsAndroid,
   Dimensions,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -22,19 +22,17 @@ const ASPECT_RATIO = width / height;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-
 export default class MapsScreen extends React.Component {
-
   state = {
-      initial: 'state',
-      mapRegion: null,
-      latitude: 0,
-      longitude: 0,
-      userList: [],
-      uid: null,
-    };
+    initial: 'state',
+    mapRegion: null,
+    latitude: 0,
+    longitude: 0,
+    userList: [],
+    uid: null,
+  };
 
-    componentDidMount = async () => {
+  componentDidMount = async () => {
     await this.getUser();
     await this.getLocation();
   };
@@ -72,15 +70,9 @@ export default class MapsScreen extends React.Component {
       return true;
     }
     if (status === PermissionsAndroid.RESULTS.DENIED) {
-      ToastAndroid.show(
-        'Location Permission Rejected',
-        ToastAndroid.LONG,
-      );
+      ToastAndroid.show('Location Permission Rejected', ToastAndroid.LONG);
     } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
-      ToastAndroid.show(
-        'Location Permission Revoked',
-        ToastAndroid.LONG,
-      );
+      ToastAndroid.show('Location Permission Revoked', ToastAndroid.LONG);
     }
     return false;
   };
@@ -125,65 +117,71 @@ export default class MapsScreen extends React.Component {
   render() {
     return (
       <View
-          style={[
-            styles.container,
-            {
-              justifyContent: 'flex-start',
-              paddingHorizontal: 20,
-              paddingTop: 20,
-            },
-          ]}>
-          <MapView
-            style={{width: '100%', height: '97%'}}
-            showsMyLocationButton={true}
-            showsIndoorLevelPicker={true}
-            showsUserLocation={true}
-            zoomControlEnabled={true}
-            showsCompass={true}
-            showsTraffic={false}
-            region={this.state.mapRegion}
-            initialRegion={{
-              latitude: -7.755322,
-              longitude: 110.381174,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
-            }}>
-            {this.state.userList.map(item => {
-              return (
-                <Marker
-                  key={item.id}
-                  title={item.name}
-                  description={item.status}
-                  draggable
-                  coordinate={{
-                    latitude: item.latitude || 0,
-                    longitude: item.longitude || 0,
-                  }}
-                  onCalloutPress={() => {
-                    this.props.navigation.navigate('Chat', {
-                      item
-                    });
-                  }}>
-                  <View>
-                    <Image
-                      source={{uri: item.photo}}
-                      style={{width: 40, height: 40, borderRadius: 50}}
-                    />
-                    <Text>{item.name}</Text>
-                  </View>
-                </Marker>
-              );
-            })}
-          </MapView>
-            <TouchableOpacity style={{width: 65, height: 65, borderRadius:100, position: 'absolute', right: "10%", top: "88%"}}
-              onPress={() => this.getLocation()}
-            >
-              {/* <Image source={marker}
+        style={[
+          styles.container,
+          {
+            justifyContent: 'flex-start',
+            paddingHorizontal: 20,
+            paddingTop: 20,
+          },
+        ]}>
+        <MapView
+          style={{width: '100%', height: '97%'}}
+          showsMyLocationButton={true}
+          showsIndoorLevelPicker={true}
+          showsUserLocation={true}
+          zoomControlEnabled={true}
+          showsCompass={true}
+          showsTraffic={false}
+          region={this.state.mapRegion}
+          initialRegion={{
+            latitude: -7.755322,
+            longitude: 110.381174,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA,
+          }}>
+          {this.state.userList.map(item => {
+            return (
+              <Marker
+                key={item.id}
+                title={item.name}
+                description={item.status}
+                draggable
+                coordinate={{
+                  latitude: item.latitude || 0,
+                  longitude: item.longitude || 0,
+                }}
+                onCalloutPress={() => {
+                  this.props.navigation.navigate('Chat', {
+                    item,
+                  });
+                }}>
+                <View>
+                  <Image
+                    source={{uri: item.photo}}
+                    style={{width: 40, height: 40, borderRadius: 50}}
+                  />
+                  <Text>{item.name}</Text>
+                </View>
+              </Marker>
+            );
+          })}
+        </MapView>
+        <TouchableOpacity
+          style={{
+            width: 65,
+            height: 65,
+            borderRadius: 100,
+            position: 'absolute',
+            right: '10%',
+            top: '88%',
+          }}
+          onPress={() => this.getLocation()}>
+          {/* <Image source={marker}
               style={{ width: 70, height: 70, borderRadius:100}}
               /> */}
-            </TouchableOpacity>
-        </View>
-
+        </TouchableOpacity>
+      </View>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import { View,
+import {
+  View,
   Text,
   FlatList,
   ActivityIndicator,
@@ -12,10 +13,9 @@ import { View,
 } from 'react-native';
 
 import {Db, Auth} from './Config';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class HomeScreen extends React.Component {
-
   state = {
     userList: [],
     refreshing: false,
@@ -24,11 +24,10 @@ export default class HomeScreen extends React.Component {
 
   componentDidMount = async () => {
     const uid = await AsyncStorage.getItem('userid');
-    
+
     this.setState({uid: uid, refreshing: true});
 
-    await Db.ref('/users')
-      .on('child_added', data => {
+    await Db.ref('/users').on('child_added', data => {
       let person = data.val();
       if (person.id != uid) {
         this.setState(prevData => {
@@ -39,12 +38,11 @@ export default class HomeScreen extends React.Component {
     });
   };
 
-
   renderItem = ({item}) => {
     return (
-      <View style={{marginHorizontal:20}}>
+      <View style={{marginHorizontal: 20}}>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Chat',{item})}>
+          onPress={() => this.props.navigation.navigate('Chat', {item})}>
           <View style={styles.row}>
             <Image source={{uri: item.photo}} style={styles.pic} />
             <View>
@@ -56,12 +54,12 @@ export default class HomeScreen extends React.Component {
                   {item.name}
                 </Text>
                 {item.status == 'Online' ? (
-                  <View style={{flexDirection:'row', paddingTop:10}}>
+                  <View style={{flexDirection: 'row', paddingTop: 10}}>
                     <Text style={styles.on}>{item.status}</Text>
                     {/* <Icon name={'md-mail'} size={15} color={'#694be2'}/> */}
                   </View>
                 ) : (
-                  <View style={{flexDirection:'row', paddingTop:10}}>
+                  <View style={{flexDirection: 'row', paddingTop: 10}}>
                     <Text style={styles.off}>{item.status}</Text>
                     {/* <Icon name={'md-mail'} size={15} color={'#694be2'}/> */}
                   </View>
@@ -77,28 +75,28 @@ export default class HomeScreen extends React.Component {
     );
   };
 
-  render(){
+  render() {
     return (
       <>
-      <SafeAreaView>
-        {this.state.refreshing === true ? (
-          <ActivityIndicator
-            size="large"
-            color="#05A0E4"
-            style={{marginTop: 150}}
-          />
-        ) : (
-          <FlatList
-            data={this.state.userList}
-            renderItem={this.renderItem}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        )}
-      </SafeAreaView>
+        <SafeAreaView>
+          {this.state.refreshing === true ? (
+            <ActivityIndicator
+              size="large"
+              color="#05A0E4"
+              style={{marginTop: 150}}
+            />
+          ) : (
+            <FlatList
+              data={this.state.userList}
+              renderItem={this.renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          )}
+        </SafeAreaView>
       </>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -114,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderBottomWidth: 1,
     padding: 10,
-    paddingTop: 15
+    paddingTop: 15,
   },
   pic: {
     borderRadius: 30,
@@ -138,17 +136,17 @@ const styles = StyleSheet.create({
     color: '#ccc',
     fontSize: 13,
   },
-  on:{
+  on: {
     fontWeight: '200',
     color: 'green',
     fontSize: 13,
-    paddingRight: 10
+    paddingRight: 10,
   },
-  off:{
+  off: {
     fontWeight: '200',
     color: '#C0392B',
     fontSize: 13,
-    paddingRight: 10
+    paddingRight: 10,
   },
   msgContainer: {
     flexDirection: 'row',
@@ -161,132 +159,4 @@ const styles = StyleSheet.create({
     fontSize: 12,
     marginLeft: 15,
   },
-});// import React, {Component} from 'react';
-// import {SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, FlatList, Dimensions} from 'react-native';
-// import User from '../../User';
-// import styles from '../Style/Style';
-// import {Db, Auth} from './Config';
-// import firebase from 'firebase';
-
-// // import image from '../Assets/user.png'
-// // import { TouchableOpacity } from 'react-native-gesture-handler';
-
-// export default class HomeScreen extends Component{
-//     state = {
-//         users: [],
-//         dbRef: Db.ref('users'),
-        
-//     }
-
-//     componentDidMount = async () => {
-//             this.state.dbRef.on('child_added', (val) => {
-//             let person = val.val();
-//             person.phone = val.key;
-//             if(person.id === User.id) {
-//                 User.name = person.name
-//                 User.image = person.image ? person.image : null
-//             } else {  
-//             this.setState((prevState) => {
-//                 return{
-//                     users: [...prevState.users, person]
-//                 }
-//             })
-//          }
-//         })
-//     }
-
-//     componentWillUnmount(){
-//         this.state.dbRef.off()
-//     }
-
-   
-//     renderRow = ({item}) => {
-//         return(
-//             <TouchableOpacity 
-//             onPress={() => this.props.navigation.navigate('Chat', item)}
-//             style={{flexDirection:'row', alignItems: 'center', padding:10, borderBottomColor: '#ccc', borderBottomWidth:1}}>
-//                 <Image source={item.image ?  {uri:item.image} : require('../Assets/user.png')}
-//                 style={{width: 32, height: 32, resizeMode: 'cover', borderRadius: 32, marginRight: 5}}/>
-//                 <Text style={{fontSize:20}}>{item.name}</Text>
-//             </TouchableOpacity>
-//         )
-//     }
-//     render(){
-//         const { height } = Dimensions.get('window');
-//         return( 
-//             <SafeAreaView>
-//                 <FlatList
-//                 style={{height}}
-//                 data={this.state.users}
-//                 renderItem={this.renderRow}
-//                 keyExtractor={(item) => item.phone}
-//                 // ListHeaderComponent={() => <Text style={{fontSize: 30, marginVertical: 10, fontWeight: 'bold'}}>Chats</Text>}
-//                 />
-//             </SafeAreaView>
-//         )
-//     }
-// }
-// import React, {Component} from 'react';
-// import {SafeAreaView, View, Image, Text, TouchableOpacity, StyleSheet, FlatList, Dimensions} from 'react-native';
-// import User from '../../User';
-// import styles from '../Style/Style';
-// import {Db} from './Config';
-// import firebase from 'firebase';
-
-// // import image from '../Assets/user.png'
-// // import { TouchableOpacity } from 'react-native-gesture-handler';
-
-// export default class HomeScreen extends Component{
-//     state = {
-//         users: [],
-//         dbRef: Db.ref('users'),
-//     }
-
-//     componentDidMount(){  
-//         this.state.dbRef.on('child_added', (val) => {
-//             let person = val.val();
-//             person.phone = val.key;
-//             if(person.id === User.id) {
-//                 User.name = person.name
-//                 User.image = person.image ? person.image : null
-//             } else {  
-//             this.setState((prevState) => {
-//                 return{
-//                     users: [...prevState.users, person]
-//                 }
-//             })
-//          }
-//         })
-//     }
-
-//     componentWillUnmount(){
-//         this.state.dbRef.off()
-//     }
-
-   
-//     renderRow = ({item}) => {
-//         return(
-//             <TouchableOpacity 
-//             onPress={() => this.props.navigation.navigate('Chat', item)}
-//             style={{flexDirection:'row', alignItems: 'center', padding:10, borderBottomColor: '#ccc', borderBottomWidth:1}}>
-//                 <Image source={item.image ?  {uri:item.image} : require('../Assets/user.png')}
-//                 style={{width: 32, height: 32, resizeMode: 'cover', borderRadius: 32, marginRight: 5}}/>
-//                 <Text style={{fontSize:20}}>{item.name}</Text>
-//             </TouchableOpacity>
-//         )
-//     }
-//     render(){
-//         const { height } = Dimensions.get('window');
-//         return( 
-//             <SafeAreaView>
-//                 <FlatList
-//                 style={{height}}
-//                 data={this.state.users}
-//                 renderItem={this.renderRow}
-//                 keyExtractor={(item) => item.phone}
-//                 // ListHeaderComponent={() => <Text style={{fontSize: 30, marginVertical: 10, fontWeight: 'bold'}}>Chats</Text>}
-//                 />
-//             </SafeAreaView>
-//         )
-//     }
-// }
+});
