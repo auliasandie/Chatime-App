@@ -186,10 +186,12 @@ export default class RegisterScreen extends React.Component{
   render(){
     return (
       <>
+       <View style={{backgroundColor: '#06ADBD', flex: 1}}>
+       <ImageBackground source={require('../Assets/logochat.png')} style={{width:200, height:200, marginLeft: 110, alignItems: 'center', justifyContent:'center'}}></ImageBackground>
      
       {/*READY lOGIN*/}
       <Text style={styles.welcome}>Feel Free to join, Chatime!</Text>
-          <Text style={styles.welcome}>Register</Text>
+          {/* <Text style={styles.welcome}>Register</Text> */}
       {/*READY FORM INPUT*/}
           <View style={styles.form}>
             <View>
@@ -233,10 +235,10 @@ export default class RegisterScreen extends React.Component{
             style={{alignSelf: 'center', marginTop:22}}
           >
             <Text style={{color: '#414959', fontSize: 13}}>
-              Already Have a Account? <Text style={{color: '#06adbd', fontWeight: '500'}}>Login Now</Text>
+              Already Have a Account? <Text style={{color: 'white', fontWeight: '500'}}>Login Now</Text>
             </Text>
           </TouchableOpacity>
-          
+          </View>
       </>
     );
   }
@@ -254,8 +256,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '100',
     textAlign: 'center',
-    color:'#06adbd',
-    marginTop:50,
+    color:'white',
+    marginTop:20,
     marginLeft: 10,
     paddingBottom: -50,
     marginBottom: 20
@@ -274,24 +276,25 @@ const styles = StyleSheet.create({
   },
   form: {
     marginHorizontal: 50,
-    marginRight: 30
+    marginRight: 30,
+    marginTop: 15
   },
   inputTitle: {
-    color: '#06adbd',
+    color: 'white',
     fontSize: 10,
     textTransform: 'uppercase'
   },
   input: {
-    borderBottomColor: '#06adbd',
+    borderBottomColor: 'white',
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
     width:300,
     fontSize: 15,
-    color: '#06adbd'
+    color: 'white'
   },
   button: {
     marginHorizontal: 50,
-    backgroundColor: '#06adbd',
+    backgroundColor: '#F5BCD6',
     borderRadius: 4,
     height: 52,
     width:300,

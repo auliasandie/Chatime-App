@@ -159,10 +159,11 @@ export default class LoginScreen extends Component {
   render() {
     return (
         <>
-        {/* <ImageBackground source={require('../Assets/logoBg.png')} style={width:20, height:20, alignItems: 'center', justifyContent:'center'></ImageBackground> */}
-        <Text style={styles.welcome}>CHATIME</Text>
-        <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"#06adbd", textAlign:'center'}}>Welcome to Chatime, Good People!</Text>
-        <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"#06adbd", textAlign:'center'}}>SIGN IN</Text>
+        <View style={{backgroundColor: '#06ADBD', flex: 1}}>
+        <ImageBackground source={require('../Assets/logochat.png')} style={{width:200, height:200, marginLeft: 110, alignItems: 'center', justifyContent:'center'}}></ImageBackground>
+        {/* <Text style={styles.welcome}>CHATIME</Text> */}
+        <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"white", textAlign:'center', marginTop: 30}}>Welcome to Chatime, Good People!</Text>
+        <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"white", textAlign:'center'}}>SIGN IN</Text>
           <View style={styles.form}>
             <View>
               <Text style={styles.inputTitle}> Email Address </Text>
@@ -189,17 +190,18 @@ export default class LoginScreen extends Component {
           <View style={styles.errorMessage}>
           </View>
           <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
-            <Text style={{color:'#FFF', fontWeight:'400'}}> Sign in </Text>
+            <Text style={{color:'#FFF', fontWeight:'400', fontSize: 18}}> Sign in </Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate("Register")}
             style={{alignSelf: 'center', marginTop:22}}
           >
             <Text style={{color: '#414959', fontSize: 13}}>
-              New to Chatime? Feel Free to Sign up <Text style={{color: '#06adbd', fontWeight: '500'}}>Register Now</Text>
+              New to Chatime? Feel Free to Sign up <Text style={{color: 'white', fontWeight: '500'}}>Register Now</Text>
             </Text>
           </TouchableOpacity>
           {/* </ImageBackground> */}
+          </View>
         
       </>
     );
@@ -234,24 +236,24 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   form: {
-    marginHorizontal: 30,
+    marginHorizontal: 50,
   },
   inputTitle: {
-    color: '#06adbd',
+    color: 'white',
     fontSize: 10,
     textTransform: 'uppercase'
   },
   input: {
-    borderBottomColor: '#06adbd',
+    borderBottomColor: 'white',
     borderBottomWidth: StyleSheet.hairlineWidth,
     height: 40,
     width:300,
     fontSize: 15,
-    color: '#06adbd'
+    color: 'white'
   },
   button: {
     marginHorizontal: 50,
-    backgroundColor: '#06adbd',
+    backgroundColor: '#F5BCD6',
     borderRadius: 4,
     height: 52,
     width:300,

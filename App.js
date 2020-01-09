@@ -7,6 +7,7 @@ import HomeScreen from './src/Screen/HomeScreen';
 import ChatScreen from './src/Screen/ChatScreen';
 import ProfileScreen from './src/Screen/ProfileScreen';
 import RegisterScreen from './src/Screen/RegisterScreen';
+import SplashScreen from './src/Screen/SplashScreen';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import MapScreen from './src/Screen/MapScreen';
 import Icon from 'native-base';
@@ -96,6 +97,7 @@ const TabNavigator = createBottomTabNavigator({
 })
 
 const switchScreen = createSwitchNavigator({
+  SplashScreen: SplashScreen,
   AuthScreen: UserNavigator,
   App: TabNavigator,
 

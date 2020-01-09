@@ -120,7 +120,7 @@ export default class ChatScreen extends Component {
             justifyContent:'center',
             alignItems:'center'
           }}>
-          <Image source={require('../Assets/paper-plane.png')} style={{width:25, height:25}}/>
+          <Image source={require('../Assets/planee.png')} style={{width:25, height:25}}/>
         </View>
       </Send>
     );
