@@ -60,12 +60,12 @@ export default class RegisterScreen extends React.Component{
     }
     if (status === PermissionsAndroid.RESULTS.DENIED) {
       ToastAndroid.show(
-        'Location Permission Denied By User.',
+        'Location Permission Rejected',
         ToastAndroid.LONG,
       );
     } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       ToastAndroid.show(
-        'Location Permission Revoked By User.',
+        'Location Permission Revoked',
         ToastAndroid.LONG,
       );
     }
@@ -138,7 +138,7 @@ export default class RegisterScreen extends React.Component{
               name: this.state.name,
               status: 'Offline',
               email: this.state.email,
-              image: 'https://atasouthport.com/wp-content/uploads/2017/04/default-image.jpg',
+              photo: 'https://atasouthport.com/wp-content/uploads/2017/04/default-image.jpg',
               latitude: this.state.latitude,
               longitude: this.state.longitude,
               id: response.user.uid,
@@ -162,7 +162,7 @@ export default class RegisterScreen extends React.Component{
 
                   AsyncStorage.setItem('user.email', user[0].email);
                   AsyncStorage.setItem('user.name', user[0].name);
-                  AsyncStorage.setItem('user.photo', user[0].image);
+                  AsyncStorage.setItem('user.photo', user[0].photo);
                 }
               });
             AsyncStorage.setItem('userid', response.user.uid);
@@ -188,6 +188,7 @@ export default class RegisterScreen extends React.Component{
       <>
      
       {/*READY lOGIN*/}
+      <Text style={styles.welcome}>Feel Free to join, Chatime!</Text>
           <Text style={styles.welcome}>Register</Text>
       {/*READY FORM INPUT*/}
           <View style={styles.form}>
@@ -251,13 +252,13 @@ const styles = StyleSheet.create({
   welcome:{
     marginVertical: 30,
     fontSize: 20,
-    fontWeight: '400',
+    fontWeight: '100',
     textAlign: 'center',
     color:'#06adbd',
-    marginTop:100,
+    marginTop:50,
     marginLeft: 10,
-    paddingBottom: -30,
-    marginBottom: 120
+    paddingBottom: -50,
+    marginBottom: 20
   },
   errorMessage:{
     height: 72,

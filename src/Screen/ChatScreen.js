@@ -49,7 +49,7 @@ export default class ChatScreen extends Component {
           this.state.userId +
           '/' +
           this.state.person.id +
-          '/' +
+          '/' + 
           msgId
       ] = message;
       updates[
@@ -60,8 +60,7 @@ export default class ChatScreen extends Component {
           '/' +
           msgId
       ] = message;
-      Db
-        .ref()
+      Db.ref()
         .update(updates);
       this.setState({message: ''});
     }
@@ -73,8 +72,7 @@ export default class ChatScreen extends Component {
     const userAvatar = await AsyncStorage.getItem('user.photo');
     this.setState({userId, userName, userAvatar});
     console.log(this.state.person.photo);
-    Db
-      .ref('messages')
+    Db.ref('messages')
       .child(this.state.userId)
       .child(this.state.person.id)
       .on('child_added', val => {

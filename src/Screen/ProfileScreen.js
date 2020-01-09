@@ -131,7 +131,7 @@ export default class ProfileScreen extends React.Component {
     } else { console.log('image');
       ImagePicker.showImagePicker(options, response => {
         ToastAndroid.show(
-          'Rest asure, your photo is flying to the shiny cloud',
+          'Wait a little bit, your photo is uploading',
           ToastAndroid.LONG,
         );
         let uploadBob = null;
@@ -153,7 +153,7 @@ export default class ProfileScreen extends React.Component {
           })
           .then(url => {
             ToastAndroid.show(
-              'Your cool avatar is being uploaded, its going back to your phone now',
+              'Your cool photo is uploaded!',
               ToastAndroid.LONG,
             );
             firebase
@@ -185,28 +185,6 @@ export default class ProfileScreen extends React.Component {
   render(){
     return (
       <>
-        {/* <Dialog
-          visible={this.state.dialogVisible}
-          title="Insert Your Name"
-          onTouchOutside={() => this.setState({dialogVisible: false})} >
-          <View>
-              <TextInput style={{borderBottomColor: '#694be2', borderBottomWidth: 2, height: 40, width:300, fontSize: 15,color: '#694be2'}}
-                autoCapitalize='none'
-              >
-            </TextInput>
-          </View>
-
-          <View style={{marginTop: 20, flexDirection:'row'}} >
-            <TouchableOpacity onPress={() => {this.setDialogVisible(!this.state.dialogVisible);}}
-              style={{width:50, height: 30, borderRadius: 8, borderWidth: 1, borderColor: '#694be2', alignItems:'center', justifyContent:'center'}}>
-              <Text style={{fontWeight:'bold'}}>Close</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginLeft:10,width:50, height: 30, borderRadius: 8, backgroundColor: '#694be2', alignItems:'center', justifyContent:'center'}}>
-              <Text style={{fontWeight:'bold', color:'#FFF'}}>Edit</Text>
-            </TouchableOpacity>
-          </View>
-        </Dialog> */}
-
         <View style={{height:270}}>
           <Image source={{uri: this.state.userAvatar}}
             style={{height: 270,}}

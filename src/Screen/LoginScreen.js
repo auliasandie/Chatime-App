@@ -57,12 +57,12 @@ export default class LoginScreen extends Component {
     }
     if (status === PermissionsAndroid.RESULTS.DENIED) {
       ToastAndroid.show(
-        'Location Permission Denied By User.',
+        'Location Permission Rejected',
         ToastAndroid.LONG,
       );
     } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       ToastAndroid.show(
-        'Location Permission Revoked By User.',
+        'Location Permission Revoked',
         ToastAndroid.LONG,
       );
     }
@@ -161,7 +161,7 @@ export default class LoginScreen extends Component {
         <>
         {/* <ImageBackground source={require('../Assets/logoBg.png')} style={width:20, height:20, alignItems: 'center', justifyContent:'center'></ImageBackground> */}
         <Text style={styles.welcome}>CHATIME</Text>
-        <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"#06adbd", textAlign:'center'}}>Feel free to join CHATIME!</Text>
+        <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"#06adbd", textAlign:'center'}}>Welcome to Chatime, Good People!</Text>
         <Text style={{marginBottom:40, fontSize:20, fontWeight:'bold', color:"#06adbd", textAlign:'center'}}>SIGN IN</Text>
           <View style={styles.form}>
             <View>

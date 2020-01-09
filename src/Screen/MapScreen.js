@@ -73,12 +73,12 @@ export default class MapsScreen extends React.Component {
     }
     if (status === PermissionsAndroid.RESULTS.DENIED) {
       ToastAndroid.show(
-        'Location Permission Denied By User.',
+        'Location Permission Rejected',
         ToastAndroid.LONG,
       );
     } else if (status === PermissionsAndroid.RESULTS.NEVER_ASK_AGAIN) {
       ToastAndroid.show(
-        'Location Permission Revoked By User.',
+        'Location Permission Revoked',
         ToastAndroid.LONG,
       );
     }
